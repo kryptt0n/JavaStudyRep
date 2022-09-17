@@ -1,3 +1,5 @@
+package java_folder;
+
 public class StringClass {
     StringBuilder sb;
 

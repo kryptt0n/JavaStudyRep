@@ -1,3 +1,5 @@
+package java_folder;
+
 public enum DayOfWeek {
     Monday,
     Tuesday,

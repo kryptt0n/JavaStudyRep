@@ -1,3 +1,5 @@
+package java_folder;
+
 public class Person {
     int age;
     String name;

@@ -1,3 +1,5 @@
+import java_folder.Person;
+
 /**
  * Documentation program helloworld
  * @author Vitaly
