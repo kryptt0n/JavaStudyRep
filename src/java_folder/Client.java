@@ -13,4 +13,9 @@ public class Client extends Human{
     public void say_hi() {
         System.out.println(String.format("Hello, my name is %s. Im a client in %s bank", name, bank_name));
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s works in %s",this.name, bank_name);
+    }
 }

@@ -1,3 +1,4 @@
+import java_folder.Client;
 import java_folder.Person;
 
 /**
@@ -8,9 +9,10 @@ import java_folder.Person;
 
 
 public class HelloWorld {
+    final static Integer inta = 1;
     public static void main(String[] args)  {
-        Lol lol = new Lol();
-        lol.say_hi();
+        Hehe lolo = new Lolo();
+
 
     }
 
@@ -19,27 +21,18 @@ public class HelloWorld {
     }
 }
 
-abstract class TestInheritance {
-    private String name = "hellp";
-    public int age = 10;
-    protected boolean kid = false;
-    float f = 1.0f;
-    public void displayInfo() {
-        System.out.println(this.name);
-    }
-
-}
-
-class Test {
-    protected void say_hi(){
-        System.out.println("Hello");
+class Hehe {
+    public void sayhi(){
+        System.out.println("hi");
     }
 }
 
-class Lol extends Test {
-    @Override
-    public void say_hi() {
-        System.out.println("WEW");
-
+class Lolo extends Hehe {
+    public void sayhi(int lol){
+        System.out.println("lolo");
+    }
+    public void test(){
+        System.out.println("test");
     }
 }
+
