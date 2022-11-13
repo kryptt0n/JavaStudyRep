@@ -1,9 +1,12 @@
+import com.vitaly.classes.Person;
 import com.vitaly.interfaces.FunctionalIntTest;
 import java_folder.Client;
 import java_folder.JetBrainsEntryExam;
-import java_folder.Person;
 
 import java.io.*;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Modifier;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
@@ -34,9 +37,8 @@ public class HelloWorld {
     }
     public static void main(String[] args) {
 //        System.out.println(LeetCodeTasks.canConstruct("bg","efjbdfbdgfjhhaiigfhbaejahgfbbgbjagbddfgdiaigdadhcfcj"));
-        String test = "Acdw Z";
-        System.out.println(test.replaceAll("[A-Z]", ""));
-        System.out.println(Pattern.compile("[A-Z]").matcher(test));
+
+
     }
 
     static int andrewAndAcid() {
