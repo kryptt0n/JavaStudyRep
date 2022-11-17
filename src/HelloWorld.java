@@ -1,3 +1,4 @@
+import classes_folder.BinaryTree;
 import com.vitaly.classes.Person;
 import com.vitaly.interfaces.FunctionalIntTest;
 import java_folder.Client;
@@ -37,6 +38,24 @@ public class HelloWorld {
     }
     public static void main(String[] args) {
 //        System.out.println(LeetCodeTasks.canConstruct("bg","efjbdfbdgfjhhaiigfhbaejahgfbbgbjagbddfgdiaigdadhcfcj"));
+
+        BinaryTree tree = new BinaryTree();
+        BinaryTree.Node node4 = new BinaryTree.Node(4);
+        BinaryTree.Node node5 = new BinaryTree.Node(5);
+        BinaryTree.Node node1 = new BinaryTree.Node(1);
+        BinaryTree.Node node3 = new BinaryTree.Node(3);
+        BinaryTree.Node node7 = new BinaryTree.Node(7);
+        BinaryTree.Node node0 = new BinaryTree.Node(0);
+
+        tree.add(4);
+        tree.add(5);
+        tree.add(1);
+        tree.add(3);
+        tree.add(7);
+        tree.add(0);
+
+        tree.print(System.out);
+
 
 
     }
