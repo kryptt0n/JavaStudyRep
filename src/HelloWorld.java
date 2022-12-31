@@ -26,6 +26,7 @@ import com.vitaly.interfaces.FunctionalIntTest;
 
 public class HelloWorld {
     final static Integer inta = 1;
+    private static final String pathToProperties = "E:\\Java Projects\\First_project\\src\\prop.properties";
 
     public static void doShit(int a, int b, FunctionalIntTest ft) {
         if (ft.wtf(a, b) > 0) {
@@ -36,26 +37,14 @@ public class HelloWorld {
             System.out.println(a + "=" + b);
         }
     }
-    public static void main(String[] args) {
-//        System.out.println(LeetCodeTasks.canConstruct("bg","efjbdfbdgfjhhaiigfhbaejahgfbbgbjagbddfgdiaigdadhcfcj"));
-
-        BinaryTree tree = new BinaryTree();
-        BinaryTree.Node node4 = new BinaryTree.Node(4);
-        BinaryTree.Node node5 = new BinaryTree.Node(5);
-        BinaryTree.Node node1 = new BinaryTree.Node(1);
-        BinaryTree.Node node3 = new BinaryTree.Node(3);
-        BinaryTree.Node node7 = new BinaryTree.Node(7);
-        BinaryTree.Node node0 = new BinaryTree.Node(0);
-
-        tree.add(4);
-        tree.add(5);
-        tree.add(1);
-        tree.add(3);
-        tree.add(7);
-        tree.add(0);
-
-        tree.print(System.out);
-
+    public static void main(String[] args) throws IOException {
+        File file = new File(pathToProperties);
+        Properties properties = new Properties();
+        properties.load(new FileReader(file));
+        for (Map.Entry<Object, Object> entry : properties.entrySet()) {
+            System.out.println(entry.getKey() + " " + entry.getValue());
+        }
+        System.out.println(properties.getProperty("first_name"));
 
 
     }
