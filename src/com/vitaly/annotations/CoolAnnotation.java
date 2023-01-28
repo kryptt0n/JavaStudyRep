@@ -1,2 +1,12 @@
-package com.vitaly.annotations;public @interface CoolAnnotation {
+package com.vitaly.annotations;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Target(value = ElementType.METHOD)
+@Retention(value = RetentionPolicy.RUNTIME)
+public @interface CoolAnnotation {
+    int value() default 0;
 }

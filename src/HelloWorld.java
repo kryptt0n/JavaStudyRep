@@ -1,8 +1,10 @@
 import classes_folder.BinaryTree;
 import com.vitaly.classes.Person;
+import com.vitaly.classes.computers.Computer;
+import com.vitaly.classes.computers.ComputerComparator;
 import com.vitaly.interfaces.FunctionalIntTest;
 import java_folder.Client;
-import java_folder.JetBrainsEntryExam;
+//import java_folder.JetBrainsEntryExam;
 
 import java.io.*;
 import java.lang.reflect.Constructor;
@@ -38,15 +40,22 @@ public class HelloWorld {
         }
     }
     public static void main(String[] args) throws IOException {
-        File file = new File(pathToProperties);
-        Properties properties = new Properties();
-        properties.load(new FileReader(file));
-        for (Map.Entry<Object, Object> entry : properties.entrySet()) {
-            System.out.println(entry.getKey() + " " + entry.getValue());
+
+        String t = null;
+        Optional<String> optional = Optional.ofNullable(t);
+        HelloWorld.andrewAndAcid();
+    }
+
+    static int reverseNum(int num) {
+        int number = num;
+        int tempVal = num % 10;
+        int res = 0;
+        while (number != 0) {
+            tempVal = number % 10;
+            res = res * 10 + tempVal;
+            number /= 10;
         }
-        System.out.println(properties.getProperty("first_name"));
-
-
+        return res;
     }
 
     static int andrewAndAcid() {
@@ -82,6 +91,18 @@ public class HelloWorld {
     }
 
 
+
+}
+
+interface A {
+
+}
+
+interface B {
+
+}
+
+interface C extends A, B {
 
 }
 

@@ -190,5 +190,92 @@ public class LeetCodeTasks {
         return result;
     }
 
+    public static boolean isValid(String s) {
+        Stack<Character> stack = new Stack<>();
+        for (Character character :s.toCharArray()) {
+            if (character.equals(')') && !stack.isEmpty() && stack.peek().equals('('))
+                stack.pop();
+            else if (character.equals(']') && !stack.isEmpty() && stack.peek().equals('[')) {
+                stack.pop();
+            } else if (character.equals('}') && !stack.isEmpty() && stack.peek().equals('{')) {
+                stack.pop();
+            } else {
+                stack.push(character);
+            }
+        }
 
+        return stack.isEmpty();
+    }
+
+    public static class ListNode {
+        int val;
+        public ListNode next;
+        public ListNode() {}
+        public ListNode(int val) { this.val = val; }
+        public ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+
+        @Override
+        public String toString() {
+            return String.valueOf(val);
+        }
+    }
+
+    public static ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        ListNode res = new ListNode();
+        ListNode listNode = res;
+
+        if (list1 == null)
+            return list2;
+        if (list2 == null)
+            return list1;
+
+        if (list1.val > list2.val) {
+            listNode.val = list2.val;
+            list2 = list2.next;
+        } else {
+            listNode.val = list1.val;
+            list1 = list1.next;
+        }
+
+        while (list1 != null && list2 != null) {
+            ListNode temp = new ListNode();
+            if (list1.val > list2.val) {
+                temp.val = list2.val;
+                list2 = list2.next;
+            } else {
+                temp.val = list1.val;
+                list1 = list1.next;
+            }
+
+            listNode.next = temp;
+            listNode = temp;
+        }
+
+        while (list1 != null) {
+            ListNode temp = new ListNode(list1.val);
+            listNode.next = temp;
+            list1 = list1.next;
+        }
+
+        while (list2 != null) {
+            ListNode temp = new ListNode(list2.val);
+            listNode.next = temp;
+            listNode = temp;
+            list2 = list2.next;
+        }
+
+        return res;
+    }
+
+    public static boolean isAnagram(String s, String t) {
+
+        for (char ch: s.toCharArray()) {
+            if (t.contains(String.valueOf(ch)))
+                t = t.replaceFirst(String.valueOf(ch), "");
+            else
+                return false;
+        }
+
+        return t.isEmpty();
+    }
 }

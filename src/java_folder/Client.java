@@ -1,5 +1,7 @@
 package java_folder;
 
+import com.vitaly.annotations.CoolAnnotation;
+
 public class Client extends Human{
 
     public String bank_name;
@@ -10,6 +12,7 @@ public class Client extends Human{
     }
 
     @Override
+    @CoolAnnotation(5)
     public void say_hi() {
         System.out.println(String.format("Hello, my name is %s. Im a client in %s bank", name, bank_name));
     }
