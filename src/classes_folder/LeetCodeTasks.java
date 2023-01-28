@@ -278,4 +278,50 @@ public class LeetCodeTasks {
 
         return t.isEmpty();
     }
+
+    public int climbStairs(int n) {
+        int res = 3;
+        int counter = 3;
+        int first = 1;
+        int second = 2;
+
+        if (n == 1)
+            return 1;
+
+        if (n == 2)
+            return 2;
+
+        while (counter <= n) {
+            res = first + second;
+            first = second;
+            second = res;
+            counter++;
+        }
+
+        return res;
+    }
+
+/**
+ * You are given an array prices where prices[i] is the price of a given stock on the ith day.
+ * You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+ * Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+ */
+    public int maxProfit(int[] prices) {
+
+        if (prices.length == 0)
+            return 0;
+        int profit = 0;
+        int minVal = prices[0];
+
+        for (int price :prices) {
+            if (price < minVal) {
+                minVal = price;
+                continue;
+            }
+            profit = Math.max(price - minVal, profit);
+        }
+
+
+        return profit;
+    }
 }
