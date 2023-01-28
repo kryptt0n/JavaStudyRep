@@ -8,7 +8,9 @@ public class ProxyClass {
     public static void main(String[] args) {
         Util normalUtil = new Util("Normal", 222);
         //Работает только с интерфесами
-        UtilInterface handledUtil = (UtilInterface) Proxy.newProxyInstance(normalUtil.getClass().getClassLoader(), normalUtil.getClass().getInterfaces(), new CustomInvocationHandler(normalUtil));
+        UtilInterface handledUtil = (UtilInterface) Proxy.newProxyInstance(normalUtil.getClass().getClassLoader(),
+                normalUtil.getClass().getInterfaces(),
+                new CustomInvocationHandler(normalUtil));
         normalUtil.sayHi();
         handledUtil.sayHi();
 
