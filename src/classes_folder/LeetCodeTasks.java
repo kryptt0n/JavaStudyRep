@@ -324,4 +324,19 @@ public class LeetCodeTasks {
 
         return profit;
     }
+
+    public void moveZeroes(int[] nums) {
+        int lastPointer = nums.length - 1;
+        for (int i = 0; i < nums.length; i++) {
+            if (i == lastPointer)
+                break;
+            if (nums[i] == 0) {
+                int temp = nums[lastPointer];
+                nums[lastPointer] = nums[i];
+                nums[i] = lastPointer;
+                lastPointer--;
+                i--;
+            }
+        }
+    }
 }
