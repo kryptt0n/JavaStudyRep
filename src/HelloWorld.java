@@ -19,6 +19,7 @@ import java.util.regex.Pattern;
 
 import classes_folder.LeetCodeTasks;
 import com.vitaly.interfaces.FunctionalIntTest;
+import leetcode.EasyPeasy;
 
 /**
  * Documentation program helloworld
@@ -40,10 +41,14 @@ public class HelloWorld {
         }
     }
     public static void main(String[] args) throws IOException {
+        int[] test = {3,2,3};
+        System.out.println(LeetCodeTasks.majorityElement(test));
 
-        String t = null;
-        Optional<String> optional = Optional.ofNullable(t);
-        HelloWorld.andrewAndAcid();
+        // 100 + 1100
+    }
+
+    static boolean isEven(int n) {
+        return (n & 1) == 0;
     }
 
     static int reverseNum(int num) {

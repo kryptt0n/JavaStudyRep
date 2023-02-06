@@ -278,4 +278,87 @@ public class LeetCodeTasks {
 
         return t.isEmpty();
     }
+
+    /** Count number of 1's in int number
+     *
+     * @param n
+     * @return
+     */
+    public static int hammingWeight(int n) {
+//        String temp = Integer.toBinaryString(n);
+//        int count = 0;
+//        temp.chars().filter(value -> value == '1').count();
+//
+//        return (int)temp.chars().filter(value -> value == '1').count();
+
+        return n == 0 ? 0 : (n & 1) + hammingWeight(n >> 1);
+    }
+
+
+    /**
+     * Your given an array of ints [0..n] n = nums.length
+     * Find the missing number
+     * @param nums
+     * @return
+     */
+    public int missingNumber(int[] nums) {
+        int totalSum =  nums.length * (nums.length - 1) / 2;
+        for (int i = 0; i < nums.length; i++) {
+            totalSum -= nums[i];
+        }
+        return totalSum;
+    }
+
+    public static int majorityElement(int[] nums) {
+        Map<Integer, Integer> numbers = new HashMap<>();
+        int max = nums.length;
+        for (int i = 0; i < max; i++) {
+            if (numbers.containsKey(nums[i])) {
+                int local = numbers.get(nums[i]);
+                numbers.put(nums[i], ++local);
+                if (local > max / 2)
+                    return nums[i];
+            } else {
+                numbers.put(nums[i], 1);
+                if (1 > max / 2)
+                    return nums[i];
+            }
+        }
+        return 0;
+    }
+
+    /**
+     * Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
+     * <p>
+     * You must implement a solution with a linear runtime complexity and use only constant extra space.
+     * @param nums
+     * @return
+     */
+    public int singleNumber(int[] nums) {
+
+        if (nums.length == 1)
+            return nums[0];
+
+        int res = 0;
+        for (int i :nums) {
+            res ^= i;
+        }
+
+        return res;
+    }
+
+
+    /**
+     * Write a function that reverses a string. The input string is given as an array of characters s.
+     *<p>
+     * You must do this by modifying the input array in-place with O(1) extra memory.
+     * @param s
+     */
+    public void reverseString(char[] s) {
+        for (int i = 0; i < s.length / 2; i++) {
+            char temp = s[i];
+            s[i] = s[s.length - i - 1];
+            s[s.length - i - 1] = temp;
+        }
+    }
 }
