@@ -41,26 +41,15 @@ public class HelloWorld {
         }
     }
     public static void main(String[] args) throws IOException {
-        int[] test = {3,2,3};
-        System.out.println(LeetCodeTasks.majorityElement(test));
-
-        // 100 + 1100
-    }
-
-    static boolean isEven(int n) {
-        return (n & 1) == 0;
-    }
-
-    static int reverseNum(int num) {
-        int number = num;
-        int tempVal = num % 10;
-        int res = 0;
-        while (number != 0) {
-            tempVal = number % 10;
-            res = res * 10 + tempVal;
-            number /= 10;
+        File file = new File(pathToProperties);
+        Properties properties = new Properties();
+        properties.load(new FileReader(file));
+        for (Map.Entry<Object, Object> entry : properties.entrySet()) {
+            System.out.println(entry.getKey() + " " + entry.getValue());
         }
-        return res;
+        System.out.println(properties.getProperty("first_name"));
+
+
     }
 
     static int andrewAndAcid() {
