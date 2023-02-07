@@ -1,3 +1,4 @@
+import algorythms.BinarySearch;
 import classes_folder.BinaryTree;
 import com.vitaly.classes.Person;
 import com.vitaly.classes.computers.Computer;
@@ -41,15 +42,26 @@ public class HelloWorld {
         }
     }
     public static void main(String[] args) throws IOException {
-        File file = new File(pathToProperties);
-        Properties properties = new Properties();
-        properties.load(new FileReader(file));
-        for (Map.Entry<Object, Object> entry : properties.entrySet()) {
-            System.out.println(entry.getKey() + " " + entry.getValue());
+        int[] test = {1,2,3,4,5,6,7,8,9};
+        System.out.println(BinarySearch.search(test, 9));
+
+        // 100 + 1100
+    }
+
+    static boolean isEven(int n) {
+        return (n & 1) == 0;
+    }
+
+    static int reverseNum(int num) {
+        int number = num;
+        int tempVal = num % 10;
+        int res = 0;
+        while (number != 0) {
+            tempVal = number % 10;
+            res = res * 10 + tempVal;
+            number /= 10;
         }
-        System.out.println(properties.getProperty("first_name"));
-
-
+        return res;
     }
 
     static int andrewAndAcid() {

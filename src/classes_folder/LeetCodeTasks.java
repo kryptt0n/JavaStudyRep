@@ -361,4 +361,95 @@ public class LeetCodeTasks {
             s[s.length - i - 1] = temp;
         }
     }
+
+    /**
+     * Given a string s consisting of words and spaces, return the length of the last word in the string.
+     *
+     * A word is a maximal
+     * substring
+     *  consisting of non-space characters only.
+     * @param s
+     * @return
+     */
+    public int lengthOfLastWord(String s) {
+        String[] arr = s.trim().split(" ");
+        return arr[arr.length - 1].length();
+    }
+
+    /**
+     * Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each
+     * unique element appears only once. The relative order of the elements should be kept the same.
+     * @param nums
+     * @return
+     */
+    public static int removeDuplicates(int[] nums) {
+        int result = 1;
+
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i - 1] != nums[i]) {
+                nums[result++] = nums[i];
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * You are given an array prices where prices[i] is the price of a given stock on the ith day.
+     * You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+     * Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+     */
+    public int maxProfit(int[] prices) {
+
+        if (prices.length == 0)
+            return 0;
+        int profit = 0;
+        int minVal = prices[0];
+
+        for (int price :prices) {
+            if (price < minVal) {
+                minVal = price;
+                continue;
+            }
+            profit = Math.max(price - minVal, profit);
+        }
+
+
+        return profit;
+    }
+
+    public void moveZeroes(int[] nums) {
+        int lastPointer = nums.length - 1;
+        for (int i = 0; i < nums.length; i++) {
+            if (i == lastPointer)
+                break;
+            if (nums[i] == 0) {
+                int temp = nums[lastPointer];
+                nums[lastPointer] = nums[i];
+                nums[i] = lastPointer;
+                lastPointer--;
+                i--;
+            }
+        }
+    }
+
+    /**
+     * Given an integer array nums and an integer val, remove all occurrences of val in nums in-place.
+     * The relative order of the elements may be changed.
+     * @param nums
+     * @param val
+     * @return
+     */
+    public int removeElement(int[] nums, int val) {
+        int res = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != val) {
+                nums[res] = nums[i];
+                res++;
+            }
+        }
+
+        return res;
+    }
 }
