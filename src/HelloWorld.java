@@ -42,8 +42,7 @@ public class HelloWorld {
         }
     }
     public static void main(String[] args) throws IOException {
-        int[] test = {1,2,3,4,5,6,7,8,9};
-        System.out.println(BinarySearch.search(test, 9));
+        System.out.println(LeetCodeTasks.isPalindrome("ab_a"));
 
         // 100 + 1100
     }
