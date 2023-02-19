@@ -1,6 +1,8 @@
 package classes_folder;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class LeetCodeTasks {
     public static int[] runningSum(int[] nums) {
@@ -451,5 +453,40 @@ public class LeetCodeTasks {
         }
 
         return res;
+    }
+
+    public static String addBinary(String a, String b) {
+        StringBuilder sb = new StringBuilder();
+        int i = 0, j = 0;
+        int carry = 0;
+        while (i < a.length() || j < b.length()) {
+            int sum = carry;
+            if (i < a.length()) {
+                sum += a.charAt(a.length() - i++ - 1) - '0';
+            }
+            if (j < b.length()) {
+                sum += b.charAt(b.length() - j++ - 1) - '0';
+            }
+            carry = sum > 1 ? 1 : 0;
+            sb.insert(0,sum % 2);
+        }
+        if (carry == 1)
+            sb.insert(0, carry);
+        return sb.toString();
+    }
+
+    public static boolean isPalindrome(String s) {
+
+
+        String clean = s.replaceAll("\\W|_", "").toLowerCase();
+        int i = 0;
+        int j = clean.length() - 1;
+        while (i < j) {
+            if (clean.charAt(i++) != clean.charAt(j--)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
