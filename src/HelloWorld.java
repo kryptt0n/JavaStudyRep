@@ -1,4 +1,5 @@
 import algorythms.BinarySearch;
+import algorythms.MergeSort;
 import classes_folder.BinaryTree;
 import com.vitaly.classes.Person;
 import com.vitaly.classes.computers.Computer;
@@ -42,8 +43,9 @@ public class HelloWorld {
         }
     }
     public static void main(String[] args) throws IOException {
-        int[] test = {1,2,3,4,5,6,7,8,9};
-        System.out.println(BinarySearch.search(test, 9));
+        System.out.println(Integer.toUnsignedString(-1));
+        System.out.println(Integer.toBinaryString(0));
+        System.out.println(0b11111111111111111111111111111100 - 0b000000000000000000100);
 
         // 100 + 1100
     }
