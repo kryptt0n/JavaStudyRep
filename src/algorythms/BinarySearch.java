@@ -7,18 +7,18 @@ public class BinarySearch {
         int firstPointer = 0;
         int lastPointer = arr.length;
         int res = (lastPointer + firstPointer) / 2;
-        while (firstPointer < lastPointer) {
+        while (firstPointer <= lastPointer) {
             if (arr[res] < val) {
                 firstPointer = res + 1;
             } else if (arr[res] > val) {
                 lastPointer = res - 1;
             } else {
-                break;
+                return res;
             }
             res = (lastPointer + firstPointer) / 2;
         }
 
 
-        return res;
+        return -1;
     }
 }

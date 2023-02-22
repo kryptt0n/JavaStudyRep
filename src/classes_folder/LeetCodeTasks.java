@@ -5,7 +5,24 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class LeetCodeTasks {
-    public static int[] runningSum(int[] nums) {
+      public static class TreeNode {
+          int val;
+          TreeNode left;
+          TreeNode right;
+          TreeNode() {}
+          public TreeNode(int val) { this.val = val; }
+          public TreeNode(int val, TreeNode left, TreeNode right) {
+              this.val = val;
+              this.left = left;
+              this.right = right;
+          }
+
+          @Override
+          public String toString() {
+              return "Value = " + val;
+          }
+      }
+      public static int[] runningSum(int[] nums) {
         int sum = 0;
         int[] result = new int[nums.length];
         for (int i = 0; i < nums.length; i++) {
@@ -489,4 +506,85 @@ public class LeetCodeTasks {
 
         return true;
     }
+
+    public static boolean isHappy(int n) {
+        int res = 0;
+        Set<Integer> unique = new HashSet<>();
+        while (res != 1) {
+            res = 0;
+            while (n > 0) {
+                res += Math.pow(n % 10, 2);
+                n /= 10;
+            }
+            if (unique.contains(res)) {
+                return false;
+            } else {
+                unique.add(res);
+                n = res;
+            }
+        }
+
+        return true;
+    }
+
+    public static List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if (root == null)
+            return result;
+
+        if (root.left == null && root.right == null) {
+            result.add(root.val);
+            return result;
+        }
+
+        List<Integer> left = inorderTraversal(root.left);
+        List<Integer> right = inorderTraversal(root.right);
+
+        result.addAll(left);
+        result.add(root.val);
+        result.addAll(right);
+
+        return result;
+    }
+
+    /**
+     * Excel title counter
+     * @param columnTitle
+     * @return
+     */
+    public static int titleToNumber(String columnTitle) {
+        int result = 0;
+        for (int i = 0; i < columnTitle.length(); i++) {
+            result += (columnTitle.charAt(columnTitle.length() - 1 - i) - 64) * Math.pow(26, i);
+        }
+        return result;
+    }
+
+    /**
+     * Function from API to determine bad version
+     * @return
+     */
+    private static boolean isBadVersion(int version) {
+        return version >= 1702766719;
+    }
+
+    public static int firstBadVersion(int n) {
+        long left = 1;
+        long result = (n + 1) / 2;
+
+        if (left == n)
+            return 1;
+
+        while (left <= n) {
+            if (isBadVersion((int)result)) {
+                n = (int)(result - 1);
+            } else {
+                left = (int)(result + 1);
+            }
+            result = (left + n) / 2;
+        }
+
+        return (int)result + 1;
+    }
+
 }

@@ -42,8 +42,8 @@ public class HelloWorld {
         }
     }
     public static void main(String[] args) throws IOException {
-        System.out.println(LeetCodeTasks.isPalindrome("ab_a"));
 
+        System.out.println(LeetCodeTasks.firstBadVersion(2126753390));
         // 100 + 1100
     }
 
