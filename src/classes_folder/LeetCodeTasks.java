@@ -188,7 +188,7 @@ public class LeetCodeTasks {
         Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
      */
 
-    public static int[] twoSum(int[] nums, int target) {
+    public static int[] twoSumEasy(int[] nums, int target) {
         int[] result = new int[2];
 
         for (int i = 0; i < nums.length; i++) {
@@ -303,7 +303,7 @@ public class LeetCodeTasks {
      * @param n
      * @return
      */
-    public static int hammingWeight(int n) {
+    public static int hammingWeightOld(int n) {
 //        String temp = Integer.toBinaryString(n);
 //        int count = 0;
 //        temp.chars().filter(value -> value == '1').count();
@@ -437,18 +437,24 @@ public class LeetCodeTasks {
         return profit;
     }
 
+    /**
+     * Given an integer array nums, move all 0's to the end of it
+     * while maintaining the relative order of the non-zero elements.
+     *
+     * Note that you must do this in-place without making a copy of the array.
+     * @param nums
+     */
+
     public void moveZeroes(int[] nums) {
-        int lastPointer = nums.length - 1;
+        int pointer = 0;
         for (int i = 0; i < nums.length; i++) {
-            if (i == lastPointer)
-                break;
-            if (nums[i] == 0) {
-                int temp = nums[lastPointer];
-                nums[lastPointer] = nums[i];
-                nums[i] = lastPointer;
-                lastPointer--;
-                i--;
+            if (nums[i] != 0) {
+                nums[pointer++] = nums[i];
             }
+        }
+
+        for (int i = 0; i <= nums.length - pointer - 1; i++) {
+            nums[nums.length - i - 1] = 0;
         }
     }
 
@@ -586,5 +592,209 @@ public class LeetCodeTasks {
 
         return (int)result + 1;
     }
+
+    /**
+     * Given an integer array nums, rotate the array to the right by k steps, where k is non-negative.
+     * @param nums
+     * @param k
+     */
+    public static void rotate(int[] nums, int k) {
+        k = k % nums.length;
+        int[] result = new int[nums.length];
+        for (int i = 0; i < k; i++) {
+            result[i] = nums[nums.length - k + i];
+        }
+
+        for (int i = 0; i <= nums.length - k - 1; i++) {
+            result[i + k] = nums[i];
+        }
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] = result[i];
+        }
+    }
+
+    public static int[] twoSum(int[] numbers, int target) {
+        int[] result = new int[2];
+
+        int firstPointer = 0;
+        int secondPointer = numbers.length - 1;
+
+        int temp = numbers[firstPointer] + numbers[secondPointer];
+        while (temp != target) {
+            if (temp > target) {
+                secondPointer--;
+            } else {
+                firstPointer++;
+            }
+            temp = numbers[firstPointer] + numbers[secondPointer];
+        }
+        result[0] = ++firstPointer;
+        result[1] = ++secondPointer;
+        return result;
+    }
+
+    public static String reverseWords(String s) {
+        StringBuilder sb = new StringBuilder();
+
+        for (String s1 :s.split(" ")) {
+            StringBuilder temp = new StringBuilder(s1);
+            sb.append(temp.reverse()).append(" ");
+        }
+
+
+        return sb.deleteCharAt(sb.length() - 1).toString();
+    }
+
+    public static ListNode middleNode(ListNode head) {
+        int counter = 0;
+        ListNode result = head;
+        int middle = 0;
+
+        while (head != null) {
+            if (++counter / 2 > middle) {
+                result = result.next;
+                middle = counter / 2;
+            }
+            head = head.next;
+        }
+
+
+        return result;
+    }
+
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode res = head;
+        ArrayList<ListNode> arrayList = new ArrayList<>();
+
+        while (head != null) {
+            arrayList.add(head);
+            head = head.next;
+        }
+
+        int index = arrayList.size() - n;
+
+        if (index == 0)
+            return res.next;
+
+        if (n == 1) {
+            arrayList.get(arrayList.size() - 2).next = null;
+        } else {
+            arrayList.get(index - 1).next = arrayList.get(index + 1);
+        }
+
+        return res;
+    }
+
+    public static int lengthOfLongestSubstring(String s) {
+        if (s.length()==0) return 0;
+        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+        int max=0;
+        for (int i=0, j=0; i<s.length(); ++i){
+            if (map.containsKey(s.charAt(i))){
+                j = Math.max(j,map.get(s.charAt(i))+1);
+            }
+            map.put(s.charAt(i),i);
+            max = Math.max(max,i-j+1);
+        }
+        return max;
+    }
+
+    public static boolean checkInclusion(String s1, String s2) {
+
+        HashMap<Character, Integer> initMap = new HashMap<>();
+        for (int i = 0; i < s1.length(); i++) {
+            int num = initMap.getOrDefault(s1.charAt(i), 0);
+            initMap.put(s1.charAt(i), ++num);
+        }
+        int counter = 0;
+
+        HashMap<Character, Integer> testMap = new HashMap<>(initMap);
+
+        for (int i = 0; i < s2.length(); i++) {
+            Character ch = s2.charAt(i);
+            if (testMap.containsKey(ch)) {
+                int num = testMap.get(ch);
+                if (num == 1) {
+                    testMap.remove(ch);
+                } else {
+                    testMap.put(ch, --num);
+                }
+            } else {
+                if (counter < initMap.get(ch)) {
+                    testMap.put(ch, ++counter);
+                }
+                testMap = new HashMap<>(initMap);
+            }
+
+            if (testMap.isEmpty()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static ListNode reverseList(ListNode head) {
+        ListNode newHead = null;
+
+        while (head != null) {
+            ListNode nextNode = head.next;
+            head.next = newHead;
+            newHead = head;
+            head = nextNode;
+        }
+
+        return newHead;
+    }
+
+    public static ListNode deleteDuplicates(ListNode head) {
+        ListNode result = head;
+
+        while (head != null) {
+            ListNode next = head.next;
+
+            if (head.val == next.val) {
+                head.next = next.next;
+            } else {
+                head = next;
+            }
+        }
+
+        return result;
+    }
+
+    public static void printListNode(ListNode head) {
+        while (head != null) {
+            System.out.print(head.val + " ");
+            head = head.next;
+        }
+    }
+
+    public static boolean isPowerOfTwo(int n) {
+        return n < 0 && Integer.bitCount(n) == 1;
+    }
+
+    public static int hammingWeight(int n) {
+        int ones = 0;
+
+        while (n != 0) {
+            ones += n & 1;
+            n = n >>> 1;
+        }
+        return ones;
+    }
+
+    public static int reverseBits(int n) {
+        int result = 0;
+
+        for (int i = 0; i < 32; i++) {
+            result <<= 1;
+            result += n & 1;
+            n >>= 1;
+        }
+
+        return result;
+    }
+
 
 }

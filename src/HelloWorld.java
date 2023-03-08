@@ -1,5 +1,6 @@
 import algorythms.BinarySearch;
-import classes_folder.BinaryTree;
+import algorythms.BinaryTree;
+import algorythms.BinaryTreeUtil;
 import com.vitaly.classes.Person;
 import com.vitaly.classes.computers.Computer;
 import com.vitaly.classes.computers.ComputerComparator;
@@ -43,8 +44,34 @@ public class HelloWorld {
     }
     public static void main(String[] args) throws IOException {
 
-        System.out.println(LeetCodeTasks.firstBadVersion(2126753390));
+        try(StringReader fileReader = new StringReader("2 2");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            FileOutputStream fileOutputStream = new FileOutputStream("output.txt");
+            BufferedOutputStream bf = new BufferedOutputStream(fileOutputStream)) {
+            String line = bufferedReader.readLine();
+            String[] nums = line.split(" ");
+            int a = Integer.parseInt(nums[0]), b = Integer.parseInt(nums[1]);
+            bf.write(String.valueOf(a + b).getBytes());
+            bf.flush();
+            System.out.println(a + b);
+        } catch (IOException e) {
+
+        }
+
+
         // 100 + 1100
+    }
+
+    static BinaryTree createTree() {
+        BinaryTree leftnode3 = new BinaryTree(1);
+        BinaryTree rightnode3 = new BinaryTree(3);
+        BinaryTree leftnode2 = new BinaryTree(2, leftnode3, rightnode3);
+        BinaryTree rightnode33 = new BinaryTree(7);
+        BinaryTree leftnode33 = new BinaryTree(5);
+        BinaryTree rightnode2 = new BinaryTree(6, leftnode33, rightnode33);
+        BinaryTree root = new BinaryTree(4, leftnode2, rightnode2);
+
+        return root;
     }
 
     static boolean isEven(int n) {
