@@ -1,6 +1,4 @@
-import algorythms.BinarySearch;
-import algorythms.BinaryTree;
-import algorythms.BinaryTreeUtil;
+import algorythms.*;
 import com.vitaly.classes.Person;
 import com.vitaly.classes.computers.Computer;
 import com.vitaly.classes.computers.ComputerComparator;
@@ -43,22 +41,13 @@ public class HelloWorld {
         }
     }
     public static void main(String[] args) throws IOException {
-
-        try(StringReader fileReader = new StringReader("2 2");
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            FileOutputStream fileOutputStream = new FileOutputStream("output.txt");
-            BufferedOutputStream bf = new BufferedOutputStream(fileOutputStream)) {
-            String line = bufferedReader.readLine();
-            String[] nums = line.split(" ");
-            int a = Integer.parseInt(nums[0]), b = Integer.parseInt(nums[1]);
-            bf.write(String.valueOf(a + b).getBytes());
-            bf.flush();
-            System.out.println(a + b);
-        } catch (IOException e) {
-
-        }
-
-
+        SortedArray<Integer> ints = new SortedArray<>();
+        ints.add(1);
+        ints.add(3);
+        ints.add(5);
+        ints.add(2);
+        ints.add(4);
+        ints.print();
         // 100 + 1100
     }
 

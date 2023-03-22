@@ -796,5 +796,74 @@ public class LeetCodeTasks {
         return result;
     }
 
+    public static int[] countBits(int n) {
+        int[] result = new int[n + 1];
+
+        for (int i = 0; i < n + 1; i++) {
+            result[i] = Integer.bitCount(i);
+        }
+
+        return result;
+    }
+
+    public static int fib(int n) {
+        int a = 0;
+        int b = 1;
+        int result = 1;
+        if (n == 1)
+            return a;
+
+        if (n == 2)
+            return b;
+
+        while (n > 2) {
+            result = a + b;
+            a = b;
+            b = result;
+            n--;
+        }
+
+        return result;
+    }
+
+    public static boolean isPowerOfThree(int n) {
+        long res = 1;
+
+        if (n <= 2)
+            return false;
+
+        if (n == 3)
+            return true;
+
+        while (res < n) {
+            res *= 3;
+            if (res == n)
+                return true;
+        }
+
+        return false;
+
+    }
+
+    public boolean isPalindrome(ListNode head) {
+        int counter = 0;
+        ArrayList<Integer> arrayList = new ArrayList<>();
+
+        while (head != null) {
+            arrayList.add(head.val);
+            head = head.next;
+            counter++;
+        }
+
+        for (int i = 0; i < counter / 2; i++) {
+            if (arrayList.get(i) != arrayList.get(counter - i - 1))
+                return false;
+        }
+
+        return true;
+    }
+
+
+
 
 }
