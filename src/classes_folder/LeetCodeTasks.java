@@ -863,6 +863,98 @@ public class LeetCodeTasks {
         return true;
     }
 
+    public static int firstUniqChar(String s) {
+
+        HashMap<Character, Integer> map = new HashMap<>();
+        int result = -1;
+
+        for (int i = 0; i < s.length(); i++) {
+            Character ch = s.charAt(i);
+            if (!map.containsKey(ch)) {
+                map.put(ch, 0);
+                result = i;
+            } else {
+                map.put(ch, map.get(ch) + 1);
+                result = -1;
+            }
+        }
+
+        return result;
+    }
+
+    public static boolean divisorGame(int n) {
+        return n % 2 == 0;
+    }
+
+    public static void deleteNode(ListNode node) {
+
+        while (node != null && node.next != null) {
+            ListNode next = node.next;
+            node.val = next.val;
+            if (next.next == null) {
+                node.next = null;
+            }
+            node = next;
+        }
+    }
+
+    private static void deleteNodeAlternative(ListNode node) {
+        node.val = node.next.val;
+        node.next = node.next.next;
+    }
+
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (nums.length == 1) {
+            result.add(new ArrayList<>() {{add(nums[0]);}});
+            return result;
+        }
+
+
+
+        return result;
+    }
+
+    // TODO: 02.04.2023 Finish the implementation
+    public static ArrayList<Integer> subarraySum(int[] arr, int n, int s)
+    {
+        ArrayList<Integer> result = new ArrayList<>();
+        int temp = arr[0];
+        int firstPointer = 0;
+        int lastPointer = 1;
+        int sum = 0;
+
+        for (int i = 0; i < n; i++) {
+            sum += arr[i];
+            if (sum > n) {
+                sum -= temp;
+                temp = arr[++firstPointer];
+            }
+
+            if (sum == s) {
+                Collections.addAll(result, firstPointer - 1, i);
+                return result;
+            }
+        }
+
+        result.add(-1);
+        return result;
+    }
+
+    public static int maxDAC(int[] arr, int index, int length) {
+        if (length - 1 == 0) {
+            return index;
+        }
+
+        if (length - index == 0) {
+            return arr[index] > arr[index + 1] ? index : index + 1;
+        }
+
+        int max = maxDAC(arr, index + 1, length - 1);
+
+        return arr[index] > arr[max] ? index : max;
+
+    }
 
 
 
