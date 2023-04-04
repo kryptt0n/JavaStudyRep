@@ -921,7 +921,6 @@ public class LeetCodeTasks {
         ArrayList<Integer> result = new ArrayList<>();
         int temp = arr[0];
         int firstPointer = 0;
-        int lastPointer = 1;
         int sum = 0;
 
         for (int i = 0; i < n; i++) {
@@ -956,6 +955,51 @@ public class LeetCodeTasks {
 
     }
 
+    public static List<List<Integer>> generatePascalTriangle(int numRows) {
+        List<List<Integer>> result = new ArrayList<>();
+
+        for (int i = 0; i < numRows; i++) {
+            result.add(new ArrayList<>());
+            for (int j = 0; j < i + 1; j++) {
+                result.get(i).add(1);
+            }
+        }
+
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j < i + 1; j++) {
+                if (j == 0 || j == i) {
+                    List<Integer> temp = result.get(i);
+                    temp.set(j, 1);
+                } else {
+                    List<Integer> selected = result.get(i);
+                    List<Integer> previousRow = result.get(i - 1);
+                    selected.set(j, previousRow.get(j - 1) + previousRow.get(j));
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public static int strStr(String haystack, String needle) {
+        int result = -1;
+
+        for (int i = 0; i <= haystack.length() - needle.length(); i++) {
+            if (haystack.charAt(i) == needle.charAt(0)) {
+                result = i;
+                for (int j = i, k = 0; k < needle.length(); j++, k++) {
+                    if (haystack.charAt(j) != needle.charAt(k)) {
+                        result = -1;
+                        break;
+                    }
+                }
+            }
+            if (result != -1)
+                return result;
+        }
+
+        return -1;
+    }
 
 
 }

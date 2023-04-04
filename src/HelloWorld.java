@@ -41,8 +41,7 @@ public class HelloWorld {
         }
     }
     public static void main(String[] args) throws IOException {
-        int[] nums = {70, 250, 50, 80, 140, 12, 14};
-        System.out.println(LeetCodeTasks.maxDAC(nums, 0, 7));
+        System.out.println(LeetCodeTasks.strStr("mississippi", "issip"));
     }
 
     static BinaryTree createTree() {
