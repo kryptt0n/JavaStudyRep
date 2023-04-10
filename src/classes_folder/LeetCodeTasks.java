@@ -865,21 +865,30 @@ public class LeetCodeTasks {
 
     public static int firstUniqChar(String s) {
 
-        HashMap<Character, Integer> map = new HashMap<>();
-        int result = -1;
+        LinkedHashMap<Character, Integer> map = new LinkedHashMap<>();
 
         for (int i = 0; i < s.length(); i++) {
+
             Character ch = s.charAt(i);
-            if (!map.containsKey(ch)) {
-                map.put(ch, 0);
-                result = i;
+
+            if (map.containsKey(ch)) {
+                map.put(ch, 2);
             } else {
-                map.put(ch, map.get(ch) + 1);
-                result = -1;
+                map.put(ch, 1);
             }
         }
 
-        return result;
+        if (map.containsValue(1)) {
+            for (Map.Entry<Character, Integer> entry :map.entrySet()) {
+                if (entry.getValue().equals(1)) {
+                    return s.indexOf(entry.getKey());
+                }
+            }
+        } else {
+            return -1;
+        }
+
+        return 0;
     }
 
     public static boolean divisorGame(int n) {
@@ -999,6 +1008,82 @@ public class LeetCodeTasks {
         }
 
         return -1;
+    }
+
+    public TreeNode sortedArrayToBST(int[] nums) {
+
+        if (nums.length == 1) {
+            return new TreeNode(nums[0]);
+        }
+
+        TreeNode root = new TreeNode();
+        root.right = new TreeNode();
+        root.left = new TreeNode();
+        int mid = nums.length / 2;
+        root.val = nums[mid];
+        TreeNode right = root.right;
+        TreeNode left = root.left;
+
+        for (int i = mid + 1; i < nums.length; i++) {
+            right.val = nums[mid];
+            right.right = new TreeNode();
+            right = right.right;
+        }
+        for (int i = mid -1; i > 0; i--) {
+            left.val = nums[mid];
+            left.left = new TreeNode();
+            left = left.left;
+        }
+
+        return root;
+    }
+
+    public static int[] intersect(int[] nums1, int[] nums2) {
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        ArrayList<Integer> integers = new ArrayList<>();
+
+        for (int i = 0, j = 0; i < nums1.length && j < nums2.length;) {
+            if (nums1[i] > nums2[j]) {
+                j++;
+            } else if (nums1[i] < nums2[j]) {
+                i++;
+            } else {
+                integers.add(nums1[i]);
+                i++;
+                j++;
+            }
+        }
+
+        return integers.stream().mapToInt(i -> i).toArray();
+    }
+
+    public static ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+
+        if (headA == null && headB == null) {
+            return null;
+        }
+
+        ListNode nodeA = headA;
+        ListNode nodeB = headB;
+
+        while (nodeA != nodeB) {
+
+            if (nodeA == null) {
+                nodeA = headB;
+            } else {
+                nodeA = nodeA.next;
+            }
+
+            if (nodeB == null) {
+                nodeB = headA;
+            } else {
+                nodeB = nodeB.next;
+            }
+        }
+
+        return nodeA;
+
     }
 
 

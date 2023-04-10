@@ -41,7 +41,7 @@ public class HelloWorld {
         }
     }
     public static void main(String[] args) throws IOException {
-        System.out.println(LeetCodeTasks.strStr("mississippi", "issip"));
+        System.out.println(Arrays.toString(LeetCodeTasks.intersect(new int[]{1, 2, 2, 1}, new int[]{2, 2})));
     }
 
     static BinaryTree createTree() {
