@@ -1086,5 +1086,120 @@ public class LeetCodeTasks {
 
     }
 
+    public boolean hasCycle(ListNode head) {
+        HashSet<ListNode> set = new HashSet<>();
+
+        while (head != null) {
+            if (set.contains(head))
+                return true;
+            else
+                set.add(head);
+
+            head = head.next;
+        }
+
+        return false;
+    }
+
+    public static void permuteString(String str, int l, int r)
+    {
+        if (l == r)
+            System.out.println(str);
+        else {
+            for (int i = l; i <= r; i++) {
+                str = swap(str, l, i);
+                permuteString(str, l + 1, r);
+                str = swap(str, l, i);
+            }
+        }
+    }
+
+    public static String swap(String a, int i, int j)
+    {
+        char temp;
+        char[] charArray = a.toCharArray();
+        temp = charArray[i];
+        charArray[i] = charArray[j];
+        charArray[j] = temp;
+        return String.valueOf(charArray);
+    }
+
+    public static List<List<Integer>> permutationInts(int[] nums) {
+        List<List<Integer>> result =  new ArrayList<>();
+        permutationInts(nums, result, new ArrayList<>(), new boolean[nums.length]);
+        return result;
+    }
+
+    private static void permutationInts(int[] nums, List<List<Integer>> result, List<Integer> permutations, boolean[] used) {
+        if (permutations.size() == nums.length) {
+            result.add(new ArrayList<>(permutations));
+        } else {
+            for (int i = 0; i < nums.length; i++) {
+                if (!used[i]) {
+                    permutations.add(nums[i]);
+                    used[i] = true;
+                    permutationInts(nums, result, permutations, used);
+                    permutations.remove(Integer.valueOf(nums[i]));
+                    used[i] = false;
+                }
+            }
+        }
+    }
+
+    public static List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        subsets(nums, result, new ArrayList<>(), 0, nums.length);
+        return result;
+    }
+
+    public static void subsets(int[] nums, List<List<Integer>> result, List<Integer> subset, int left, int right) {
+        result.add(new ArrayList<>(subset));
+        for (int i = 0; i < nums.length; i++) {
+//            if (!used[i]) {
+//                subset.add(nums[i]);
+//                used[i] = true;
+//                subsets(nums, result, subset, used);
+//                subset.remove(Integer.valueOf(nums[i]));
+//                used[i] = false;
+//            }
+        }
+    }
+
+    public static int maxProfit2(int[] prices) {
+
+        if (prices.length == 1) {
+            return 0;
+        }
+
+        int profit = 0;
+
+        int max = prices[0];
+        int min = prices[0];
+        int tempProfit = 0;
+
+        for (int i = 1; i < prices.length; i++) {
+            int price = prices[i];
+            if (price < min) {
+                tempProfit = Math.max(max-min, tempProfit);
+                profit += tempProfit;
+                tempProfit = 0;
+                min = price;
+                max = price;
+            } else if (price > max){
+                max = price;
+                tempProfit = Math.max(max-min, tempProfit);
+            } else if (price < max) {
+                profit += tempProfit;
+                tempProfit = 0;
+                min = price;
+                max = price;
+            }
+        }
+
+        profit += tempProfit;
+
+        return profit;
+    }
+
 
 }

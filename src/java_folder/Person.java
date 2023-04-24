@@ -22,7 +22,7 @@ public class Person {
         setName(Name);
         account = new Account("qwerty");
     }
-    Person(String Name, int Age){
+    public Person(String Name, int Age){
         setName(Name);
         setAge(Age);
         account = new Account("qwerty");
@@ -34,6 +34,9 @@ public class Person {
         }
     }
 
+    public int getAge() {
+        return age;
+    }
 
     public class Account {
         private String pass;

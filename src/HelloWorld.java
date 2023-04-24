@@ -1,5 +1,4 @@
 import algorythms.*;
-import com.vitaly.classes.Person;
 import com.vitaly.classes.computers.Computer;
 import com.vitaly.classes.computers.ComputerComparator;
 import com.vitaly.interfaces.FunctionalIntTest;
@@ -16,9 +15,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 import classes_folder.LeetCodeTasks;
 import com.vitaly.interfaces.FunctionalIntTest;
+import java_folder.Person;
 import leetcode.EasyPeasy;
 
 /**
@@ -31,17 +32,20 @@ public class HelloWorld {
     final static Integer inta = 1;
     private static final String pathToProperties = "E:\\Java Projects\\First_project\\src\\prop.properties";
 
-    public static void doShit(int a, int b, FunctionalIntTest ft) {
-        if (ft.wtf(a, b) > 0) {
-            System.out.println(a + ">" + b);
-        } else if (ft.wtf(a, b) < 0){
-            System.out.println(a + "<" + b);
-        } else {
-            System.out.println(a + "=" + b);
-        }
-    }
     public static void main(String[] args) throws IOException {
-        System.out.println(Arrays.toString(LeetCodeTasks.intersect(new int[]{1, 2, 2, 1}, new int[]{2, 2})));
+       int[] prices = {7,6,4,3,1};
+        System.out.println(LeetCodeTasks.maxProfit2(prices));
+    }
+
+    static Graph<Integer> createGraph() {
+        Graph<Integer> last = new Graph<Integer>(12, null);
+        Graph<Integer> a4 = new Graph<Integer>(4, new HashMap<>(){{put(last, 2);}});
+        Graph<Integer> a6 = new Graph<Integer>(6, new HashMap<>(){{put(last, 5);}});
+        Graph<Integer> a2 = new Graph<Integer>(2, new HashMap<>(){{put(a4, 3); put(a6, 1);}});
+        Graph<Integer> a3 = new Graph<Integer>(3, new HashMap<>(){{put(a6, 4);}});
+        Graph<Integer> head = new Graph<Integer>(1, new HashMap<>(){{put(a2, 4); put(a3, 5);}});
+
+        return head;
     }
 
     static BinaryTree createTree() {
@@ -108,16 +112,28 @@ public class HelloWorld {
 
 }
 
-interface A {
+class Tester {
+    public String name;
 
-}
+    public Tester(String name) {
+        this.name = name;
+    }
 
-interface B {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tester tester = (Tester) o;
+        return Objects.equals(name, tester.name);
+    }
 
-}
-
-interface C extends A, B {
-
+    @Override
+    public int hashCode() {
+        if (name.length() % 2 == 0)
+            return 22;
+        else
+            return 33;
+    }
 }
 
 
